@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/plantScreen.dart';
 
 class LoginContainer extends StatefulWidget {
   @override
@@ -29,36 +30,41 @@ class _LoginContainerState extends State<LoginContainer> {
                     child: Column(
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.only(left: 5, right: 5,bottom: 5),
+                      margin: EdgeInsets.only(left: 5, right: 5, bottom: 5),
                       height: constraints.maxHeight * 0.1,
                       child: TextFormField(
                         decoration: InputDecoration(
-                            labelText: 'NIC',
+                            labelText: 'Email',
                             suffixIcon: Icon(
-                              Icons.flag,
-                              color: Colors.green[200],
+                              Icons.mail,
+                              color: Colors.green[400],
                             )),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 5, right: 5,bottom: 5),
+                      margin: EdgeInsets.only(left: 5, right: 5, bottom: 5),
                       height: constraints.maxHeight * 0.1,
                       child: TextFormField(
+                        obscureText: true,
                         decoration: InputDecoration(
-                            labelText: 'Cell Number',
+                            labelText: 'Password',
                             suffixIcon: Icon(
-                              Icons.call,
-                              color: Colors.green[200],
+                              Icons.lock,
+                              color: Colors.green[400],
                             )),
                       ),
                     ),
                     Container(
                         height: constraints.maxHeight * 0.1,
                         decoration: BoxDecoration(
-                            color: Colors.green[200],
+                            color: Colors.green[400],
                             borderRadius: BorderRadius.circular(25)),
-                        child:
-                            FlatButton(onPressed: () {}, child: Text('Login')))
+                        child: FlatButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(PlantScreen.routeName);
+                            },
+                            child: Text('Login')))
                   ],
                 ))
               ],

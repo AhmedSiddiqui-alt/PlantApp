@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/loginContainerWidget.dart';
 
 class AuthScreen extends StatefulWidget {
+  static const routeName='AuthScreen';
   @override
   _AuthScreenState createState() => _AuthScreenState();
 }
@@ -29,7 +30,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     )),
                     height: constraints.maxHeight * 0.37,
                     decoration: BoxDecoration(
-                        color: Colors.green[200],
+                        color: Colors.green[400],
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(50),
                             bottomLeft: Radius.circular(50))),
@@ -41,7 +42,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     child: LoginContainer(),
                     height: constraints.maxHeight * 0.6,
                     decoration: BoxDecoration(
-                        color: Colors.green[200],
+                        color: Colors.green[400],
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(150))),
                   ),
