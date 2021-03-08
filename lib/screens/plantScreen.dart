@@ -13,6 +13,12 @@ class _PlantScreenState extends State<PlantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   actions: <Widget>[
+      //   IconBu
+      //   ],
+      // ),
       body: SingleChildScrollView(),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.green[200],
@@ -20,7 +26,6 @@ class _PlantScreenState extends State<PlantScreen> {
           Text('Top'),
           Text('Outdoor'),
           Text('Indoor'),
-          Text('Plant Pots'),
         ],
         onTap: (index) {
           setState(() {

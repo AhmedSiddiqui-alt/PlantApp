@@ -1,5 +1,6 @@
 import './authScreen.dart';
 import 'package:flutter/material.dart';
+import '../screens/registrationScreen.dart';
 
 class BackGroundScreen extends StatefulWidget {
   @override
@@ -108,7 +109,10 @@ class _BackGroundScreenState extends State<BackGroundScreen> {
                           // color: Colors.green[400],
                           borderRadius: BorderRadius.circular(30)),
                       child: FlatButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed(RegistrationScreen.routeName);
+                          },
                           child: Text(
                             'Create an Account',
                             style: TextStyle(color: Colors.black, fontSize: 20),
