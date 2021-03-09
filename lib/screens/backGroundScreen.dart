@@ -104,7 +104,7 @@ class _BackGroundScreenState extends State<BackGroundScreen> {
                     Container(
                       margin: EdgeInsets.only(top: 10),
                       height: constraints.maxHeight * 0.08,
-                      width: constraints.maxHeight * 0.3,
+                      // width: constraints.maxHeight * 0.3,
                       decoration: BoxDecoration(
                           // color: Colors.green[400],
                           borderRadius: BorderRadius.circular(30)),

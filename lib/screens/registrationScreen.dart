@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/registerContainerWidget.dart';
 import '../provider/customerProvider.dart';
 import '../models/customer.dart';
 import 'package:provider/provider.dart';
+import 'package:loading_animations/loading_animations.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const routeName = 'regiterScreen';
@@ -17,25 +17,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   var customerData =
       Customer(id: null, customerEmail: null, customerPassword: null);
   void saveForm() async {
-    print('I am here 0');
-
     try {
-      print('I am here 1');
-
       _formkey.currentState.save();
-      print('I am here 2');
-      print(customerData.customerEmail);
-      print(customerData.customerPassword);
-      await Provider.of<CustomerProvider>(context)
-          .resgisterVoter(
-              customerData.customerEmail, customerData.customerPassword)
-          .then((value) => {
-                setState(() {
-                  isLoading = false;
-                }),
-                Navigator.of(context).pop()
-              });
-      print('I am here 3');
+      if (_formkey.currentState.validate()) {
+        await Provider.of<CustomerProvider>(context).resgisterVoter(
+            customerData.customerEmail, customerData.customerPassword);
+        Navigator.of(context).pop();
+      }
     } catch (error) {
       showDialog(
           context: context,
@@ -56,10 +44,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ],
             );
           });
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
-    // finally {
+  }
 
-    // }
+  @override
+  void dispose() {
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -67,8 +62,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
         body: isLoading
             ? Center(
-                child: CircularProgressIndicator(
+                child: LoadingBouncingGrid.circle(
                 backgroundColor: Colors.green[400],
+                size: 60,
+                borderColor: Colors.black,
               ))
             : SingleChildScrollView(
                 child: Container(
@@ -78,7 +75,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         children: <Widget>[
                           Align(
                             child: Container(
-                              margin: EdgeInsets.only(bottom: 20),
+                              margin: EdgeInsets.only(bottom: constraints.maxHeight * 0.05),
                               child: ClipOval(
                                   child: Center(
                                 child: Container(
@@ -87,7 +84,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   height: 200,
                                 )),
                               )),
-                              height: constraints.maxHeight * 0.37,
+                              height: constraints.maxHeight * 0.35,
                               decoration: BoxDecoration(
                                   color: Colors.green[400],
                                   borderRadius: BorderRadius.only(
@@ -130,7 +127,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                                           0.05,
                                                   child: TextFormField(
                                                     decoration: InputDecoration(
-                                                        labelText: 'Email',
+                                                        hintText: 'Email',
                                                         suffixIcon: Icon(
                                                           Icons.mail,
                                                           color:
@@ -162,7 +159,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                                     // },
                                                     obscureText: true,
                                                     decoration: InputDecoration(
-                                                        labelText: 'Password',
+                                                        hintText: 'Password',
                                                         suffixIcon: Icon(
                                                           Icons.lock,
                                                           color:
@@ -181,7 +178,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                                   child: TextFormField(
                                                     obscureText: true,
                                                     decoration: InputDecoration(
-                                                        labelText:
+                                                        hintText:
                                                             'Confirm Password',
                                                         suffixIcon: Icon(
                                                           Icons.lock,
