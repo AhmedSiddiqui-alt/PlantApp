@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/plantScreen.dart';
+import 'indoorScreen.dart';
 import '../models/auth.dart';
 import 'package:provider/provider.dart';
 import '../provider/authProvider.dart';

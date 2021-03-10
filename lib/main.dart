@@ -1,8 +1,8 @@
 import 'package:PABMAS/provider/authProvider.dart';
-import 'package:flutter/foundation.dart';
+import 'package:PABMAS/screens/plantScreen.dart';
 import 'package:flutter/material.dart';
 import './screens/authScreen.dart';
-import './screens/plantScreen.dart';
+import 'screens/indoorScreen.dart';
 import './screens/backGroundScreen.dart';
 import './screens/registrationScreen.dart';
 import 'package:provider/provider.dart';
@@ -27,10 +27,14 @@ class MyApp extends StatelessWidget {
       child: Consumer<AuthProvider>(builder: (ctx, authProvider, _) {
         print(authProvider.checkEmail);
         return MaterialApp(
-          home: authProvider.checkEmail ? PlantScreen() : BackGroundScreen(),
+          // home: authProvider.checkEmail ? PlantScreen() : BackGroundScreen(),
+          home: PlantScreen(),
+
           routes: {
+            PlantScreen.routeName:(ctx)=>PlantScreen(),
+            BackGroundScreen.routeName: (ctx) => BackGroundScreen(),
             AuthScreen.routeName: (ctx) => AuthScreen(),
-            PlantScreen.routeName: (ctx) => PlantScreen(),
+            // IndoorScreen.routeName: (ctx) => IndoorScreen(),
             RegistrationScreen.routeName: (ctx) => RegistrationScreen()
           },
         );

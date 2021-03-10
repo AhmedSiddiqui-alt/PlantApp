@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../screens/registrationScreen.dart';
 
 class BackGroundScreen extends StatefulWidget {
+  static const routeName='/backgroundScreen';
   @override
   _BackGroundScreenState createState() => _BackGroundScreenState();
 }
