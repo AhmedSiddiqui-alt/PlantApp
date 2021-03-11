@@ -20,7 +20,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     try {
       _formkey.currentState.save();
       if (_formkey.currentState.validate()) {
-        await Provider.of<CustomerProvider>(context).resgisterVoter(
+        await Provider.of<CustomerProvider>(context).resgisterCustomer(
             customerData.customerEmail, customerData.customerPassword);
         Navigator.of(context).pop();
       }

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/auth.dart';
@@ -36,6 +35,8 @@ class AuthProvider with ChangeNotifier {
     final urlByPassword =
         'https://pmbac-269e8-default-rtdb.firebaseio.com/Auth.json?&orderBy="authPassword"&equalTo="$password"';
     try {
+      print(email);
+      print(password);
       final responseDataByEmail = await http.get(urlByEmail);
       final responseDataByPassword = await http.get(urlByPassword);
       final extractedDataByEmail =
@@ -44,12 +45,16 @@ class AuthProvider with ChangeNotifier {
           .decode(responseDataByPassword.body) as Map<String, dynamic>;
       var getkeyByEmail;
       var getKeyByPassword;
+      print(extractedDataByEmail);
+      print(extractedDataByPassword);
       extractedDataByEmail.forEach((key, value) {
-        getkeyByEmail = key;
+        getkeyByEmail = value['authKey'];
       });
       extractedDataByPassword.forEach((key, value) {
-        getKeyByPassword = key;
+        getKeyByPassword = value['authKey'];
       });
+      print(getkeyByEmail);
+      print(getKeyByPassword);
       if (getkeyByEmail == getKeyByPassword) {
         print(extractedDataByEmail);
         extractedDataByEmail.forEach((key, value) {

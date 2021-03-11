@@ -6,11 +6,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class CustomerProvider with ChangeNotifier {
-  final List<Customer> customerData = [];
+  List<Customer> customerData = [];
 
   List<Customer> get custData {
     return [...customerData];
   }
+
+  final String emailCust;
+  CustomerProvider({@required this.emailCust});
 
   Future<void> authSignup(String key, String email, String password) async {
     final url = 'https://pmbac-269e8-default-rtdb.firebaseio.com/Auth.json';
@@ -21,12 +24,31 @@ class CustomerProvider with ChangeNotifier {
       notifyListeners();
     } catch (caughtError) {
       throw caughtError;
-
-      // throw Exception('Server Error');
     }
   }
 
-  Future<void> resgisterVoter(String email, String password) async {
+  Future<void> getCustomerData() async {
+    print(emailCust + 'Test');
+    final url =
+        'https://pmbac-269e8-default-rtdb.firebaseio.com/Customer.json?&orderBy="customerEmail"&equalTo="$emailCust"';
+    try {
+      final responseData = await http.get(url);
+      final extractedData =
+          await json.decode(responseData.body) as Map<String, dynamic>;
+      extractedData.forEach((key, value) {
+        customerData.add(Customer(
+            id: key,
+            customerEmail: value['customerEmail'],
+            customerPassword: value['customerPassword']));
+      });
+      // print(custData[0].customerEmail + 'Test 2');
+      notifyListeners();
+    } catch (caughtError) {
+      throw Exception(caughtError);
+    }
+  }
+
+  Future<void> resgisterCustomer(String email, String password) async {
     final url = 'https://pmbac-269e8-default-rtdb.firebaseio.com/Customer.json';
     try {
       final getResponse = await http.post(url,

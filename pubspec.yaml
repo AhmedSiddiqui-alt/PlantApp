@@ -54,7 +54,18 @@ flutter:
     - assets/images/PlantLogo.png
     - assets/images/LoginLogo.png
     - assets/images/gardening.png
+    - assets/images/hangingleaf-removebg-preview.png
+    - assets/images/hangingleaf2-removebg-preview.png
     - assets/images/leaf.jpg
+    - assets/images/indoor/indimg1.jpg
+    - assets/images/indoor/indimg2.jpg
+    - assets/images/indoor/indimg3.jpg
+    - assets/images/indoor/indimg4.jpg
+
+
+
+
+
 
 
   #   - images/a_dot_ham.jpeg
