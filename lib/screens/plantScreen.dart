@@ -30,6 +30,13 @@ class _PlantScreenState extends State<PlantScreen> {
           });
         });
       });
+      // Provider.of<IndoorPlantsProvider>(context)
+      //     .fetchIndoorPlantsData()
+      //     .then((value) {
+      //   setState(() {
+      //     isLoading = false;
+      //   });
+      // });
     }
     init = false;
 

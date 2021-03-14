@@ -26,6 +26,23 @@ class IndoorPlantsProvider with ChangeNotifier {
     }
   }
 
+  Future<void> updateIndoorPlantsDetails(
+      String image, String name, String price, String description) {
+    final url =
+        'https://pmbac-269e8-default-rtdb.firebaseio.com/IndoorPlants/-MVWS02aGIxxUzyIA-QF.json';
+    try {
+      final responseData = http.patch(url,
+          body: json.encode({
+            'indoorPlantName': name,
+            'indoorPlantImage': image,
+            'indoorPlantPrice': price,
+            'indoorPlantDescription': description
+          }));
+    } catch (caughtError) {
+      throw caughtError;
+    }
+  }
+
   Future<void> fetchIndoorPlantsData() async {
     final url =
         'https://pmbac-269e8-default-rtdb.firebaseio.com/IndoorPlants.json';

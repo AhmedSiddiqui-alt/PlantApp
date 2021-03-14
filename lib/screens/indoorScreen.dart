@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../provider/customerProvider.dart';
-import 'package:loading_animations/loading_animations.dart';
 import '../provider/indoorProvider.dart';
 import '../provider/indoorProvider.dart';
+import '../screens/indoorDetailScreen.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class IndoorScreen extends StatefulWidget {
   static const routeName = 'indoorScreen';
@@ -61,12 +61,28 @@ class _IndoorScreenState extends State<IndoorScreen> {
                         crossAxisSpacing: 20),
                     itemBuilder: (ctx, index) {
                       return GridTile(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                IndoorDetailScreen.routeName,
+                                arguments: indooDetailPlant[index].id);
+                          },
                           child: Container(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.asset(indooDetailPlant[index].image),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: Image.asset(indooDetailPlant[index].image),
+                            ),
+                          ),
                         ),
-                      ));
+                        footer: GridTileBar(
+                          backgroundColor: Colors.black54,
+                          title: AutoSizeText(
+                            indooDetailPlant[index].name,
+                            style: TextStyle(fontSize: 15),
+                            maxLines: 2,
+                          ),
+                        ),
+                      );
                     },
                     itemCount: indooDetailPlant.length,
                   ),

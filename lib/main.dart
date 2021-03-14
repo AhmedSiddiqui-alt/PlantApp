@@ -1,6 +1,3 @@
-import 'package:PABMAS/provider/authProvider.dart';
-import 'package:PABMAS/provider/indoorProvider.dart';
-import 'package:PABMAS/screens/plantScreen.dart';
 import 'package:flutter/material.dart';
 import './screens/authScreen.dart';
 import 'screens/indoorScreen.dart';
@@ -8,6 +5,11 @@ import './screens/backGroundScreen.dart';
 import './screens/registrationScreen.dart';
 import 'package:provider/provider.dart';
 import './provider/customerProvider.dart';
+import './provider/authProvider.dart';
+import './provider/indoorProvider.dart';
+import './screens/plantScreen.dart';
+import './screens/indoorDetailScreen.dart';
+import './screens/settingScreen.dart';
 // import 'package:device_preview/device_preview.dart';
 
 void main() {
@@ -42,7 +44,8 @@ class MyApp extends StatelessWidget {
             PlantScreen.routeName: (ctx) => PlantScreen(),
             BackGroundScreen.routeName: (ctx) => BackGroundScreen(),
             AuthScreen.routeName: (ctx) => AuthScreen(),
-            RegistrationScreen.routeName: (ctx) => RegistrationScreen()
+            RegistrationScreen.routeName: (ctx) => RegistrationScreen(),
+            IndoorDetailScreen.routeName: (ctx) => IndoorDetailScreen()
           },
         );
       }),

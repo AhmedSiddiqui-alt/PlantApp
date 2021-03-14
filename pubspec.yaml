@@ -36,6 +36,7 @@ dev_dependencies:
   http: ^0.12.2
   curved_navigation_bar: ^0.3.7
   loading_animations: "^2.1.0"
+  auto_size_text: ^2.1.0
   
 
 # For information on the generic Dart part of this file, see the
@@ -57,10 +58,10 @@ flutter:
     - assets/images/hangingleaf-removebg-preview.png
     - assets/images/hangingleaf2-removebg-preview.png
     - assets/images/leaf.jpg
-    - assets/images/indoor/indimg1.jpg
-    - assets/images/indoor/indimg2.jpg
-    - assets/images/indoor/indimg3.jpg
-    - assets/images/indoor/indimg4.jpg
+    - assets/images/indoor/indimg1.png
+    - assets/images/indoor/indimg2.png
+    - assets/images/indoor/indimg3.png
+    - assets/images/indoor/indimg4.png
 
 
 
