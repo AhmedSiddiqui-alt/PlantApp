@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import '../provider/indoorProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import '../widgets/appDrawerWidget.dart';
+import '../screens/indoorScreen.dart';
 
+// import '../widgets/appDrawerWidget.dart';
 class IndoorDetailScreen extends StatefulWidget {
   static const routeName = '/indoorScreen';
   @override
@@ -10,6 +13,7 @@ class IndoorDetailScreen extends StatefulWidget {
 }
 
 class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
+  // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     final getId = ModalRoute.of(context).settings.arguments as String;
@@ -31,35 +35,44 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
                 child: Image.asset(
                     'assets/images/hangingleaf-removebg-preview.png'),
               ),
-              Stack(
-                children: <Widget>[
-                  Container(
-                    height: constraints.maxHeight * 0.1,
-                    child: IconButton(
-                        icon: Icon(
-                          Icons.shopping_cart_sharp,
-                          size: 40,
-                        ),
-                        onPressed: () {},
-                        color: Colors.green[900]),
-                  ),
-                  Positioned(
-                    // left: 2,
-                    child: Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          color: Colors.green[900],
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Text(
-                        '0',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
-                      ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    color: Colors.green[900],
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(IndoorScreen.routeName);
+                    }),
+                Stack(
+                  children: <Widget>[
+                    Container(
+                      height: constraints.maxHeight * 0.1,
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.shopping_cart_sharp,
+                            size: 40,
+                          ),
+                          onPressed: () {},
+                          color: Colors.green[900]),
                     ),
-                  )
-                ],
-              ),
+                    Positioned(
+                      // left: 2,
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            color: Colors.green[900],
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Text(
+                          '0',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ]),
               Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: Container(

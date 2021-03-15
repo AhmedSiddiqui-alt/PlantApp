@@ -10,6 +10,7 @@ import './provider/indoorProvider.dart';
 import './screens/plantScreen.dart';
 import './screens/indoorDetailScreen.dart';
 import './screens/settingScreen.dart';
+import './screens/indoorScreen.dart';
 // import 'package:device_preview/device_preview.dart';
 
 void main() {
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
             BackGroundScreen.routeName: (ctx) => BackGroundScreen(),
             AuthScreen.routeName: (ctx) => AuthScreen(),
             RegistrationScreen.routeName: (ctx) => RegistrationScreen(),
-            IndoorDetailScreen.routeName: (ctx) => IndoorDetailScreen()
+            IndoorDetailScreen.routeName: (ctx) => IndoorDetailScreen(),
+            IndoorScreen.routeName: (ctx) => IndoorScreen()
           },
         );
       }),

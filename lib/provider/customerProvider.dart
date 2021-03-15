@@ -48,6 +48,11 @@ class CustomerProvider with ChangeNotifier {
     }
   }
 
+  Future<void> logoutCust() {
+    customerData = [];
+    notifyListeners();
+  }
+
   Future<void> resgisterCustomer(String email, String password) async {
     final url = 'https://pmbac-269e8-default-rtdb.firebaseio.com/Customer.json';
     try {

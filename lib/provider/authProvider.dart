@@ -29,6 +29,11 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  Future<void> logoutCustomer() async {
+    authData = [];
+    notifyListeners();
+  }
+
   Future<void> loginCustomer(String email, String password) async {
     final urlByEmail =
         'https://pmbac-269e8-default-rtdb.firebaseio.com/Auth.json?&orderBy="authEmail"&equalTo="$email"';
