@@ -37,6 +37,7 @@ dev_dependencies:
   curved_navigation_bar: ^0.3.7
   loading_animations: "^2.1.0"
   auto_size_text: ^2.1.0
+  weather_icons: ^2.0.2
   
 
 # For information on the generic Dart part of this file, see the
@@ -63,6 +64,13 @@ flutter:
     - assets/images/indoor/indimg2.png
     - assets/images/indoor/indimg3.png
     - assets/images/indoor/indimg4.png
+    - assets/images/outdoor/outdoorimg1.png
+    - assets/images/outdoor/outdoorimg2.png
+    - assets/images/outdoor/outdoorimg3.png
+    - assets/images/outdoor/outdoorimg4.png
+
+
+
 
 
 

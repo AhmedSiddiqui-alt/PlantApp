@@ -1,7 +1,9 @@
+import 'package:PABMAS/screens/plantScreen.dart';
 import 'package:flutter/material.dart';
 import '../provider/authProvider.dart';
 import '../provider/customerProvider.dart';
 import 'package:provider/provider.dart';
+import '../screens/backGroundScreen.dart';
 
 class AppDrawerWidget extends StatefulWidget {
   @override
@@ -40,7 +42,8 @@ class _AppDrawerWidgetState extends State<AppDrawerWidget> {
                   onPressed: () {
                     Provider.of<AuthProvider>(context).logoutCustomer();
                     Provider.of<CustomerProvider>(context).logoutCust();
-                    Navigator.of(context).pushReplacementNamed('/');
+                    Navigator.of(context)
+                        .pop();
                   }),
             ),
             ListTile(

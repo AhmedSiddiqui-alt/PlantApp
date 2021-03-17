@@ -56,7 +56,7 @@ class IndoorPlantsProvider with ChangeNotifier {
             image: value['indoorPlantImage'],
             name: value['indoorPlantName'],
             description: value['indoorPlantDescription'],
-            price: value['indoorPlantPrice']));
+            price: double.parse(value['indoorPlantPrice'])));
       });
       print('Hello');
       print(extractedData);

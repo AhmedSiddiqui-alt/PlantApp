@@ -1,25 +1,22 @@
-import 'package:PABMAS/screens/plantScreen.dart';
 import 'package:flutter/material.dart';
-import '../provider/indoorProvider.dart';
+import '../provider/outdoorProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import '../widgets/appDrawerWidget.dart';
-import '../screens/indoorScreen.dart';
-
-// import '../widgets/appDrawerWidget.dart';
-class IndoorDetailScreen extends StatefulWidget {
-  static const routeName = '/indoorScreen';
+import '../screens/outdoorScreen.dart';
+import '../screens/plantScreen.dart';
+class OutDoorDetailScreen extends StatefulWidget {
   @override
-  _IndoorDetailScreenState createState() => _IndoorDetailScreenState();
+  _OutDoorDetailScreenState createState() => _OutDoorDetailScreenState();
+  static const routeName = '/outDoorScreen';
 }
 
-class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
-  // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+class _OutDoorDetailScreenState extends State<OutDoorDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final getId = ModalRoute.of(context).settings.arguments as String;
-    final indoorPlantData = Provider.of<IndoorPlantsProvider>(context)
-        .indoorPlantData
+    final outdoorPlantData = Provider.of<OutdoorPlantsProvider>(context)
+        .outoorPlantData
         .firstWhere((data) {
       return data.id == getId;
     });
@@ -106,7 +103,7 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
                                   width: constraints.maxWidth * 0.6,
                                   // color: Colors.blue,
                                   child: AutoSizeText(
-                                    indoorPlantData.name,
+                                    outdoorPlantData.name,
                                     maxLines: 3,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -133,7 +130,7 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
                                   width: constraints.maxWidth * 0.5,
                                   // color: Colors.blue,
                                   child: AutoSizeText(
-                                    indoorPlantData.price.toString(),
+                                    outdoorPlantData.price.toString(),
                                     maxLines: 3,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -166,7 +163,7 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
                                 child: Container(
                                   // color: Colors.blue,
                                   height: constraints.maxHeight * 0.2,
-                                  child: Image.asset(indoorPlantData.image),
+                                  child: Image.asset(outdoorPlantData.image),
                                 ),
                               ),
                             ],
@@ -190,7 +187,7 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
                         child: ListView(
                           children: [
                             AutoSizeText(
-                              indoorPlantData.description,
+                              outdoorPlantData.description,
                               textAlign: TextAlign.justify,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),

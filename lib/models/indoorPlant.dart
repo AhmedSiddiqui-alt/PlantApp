@@ -4,7 +4,7 @@ class IndoorPlant {
   final String id;
   final String image;
   final String name;
-  final String price;
+  final double price;
   final String description;
   IndoorPlant({
     @required this.id,

@@ -12,7 +12,7 @@ class CustomerProvider with ChangeNotifier {
     return [...customerData];
   }
 
-  final String emailCust;
+  String emailCust;
   CustomerProvider({@required this.emailCust});
 
   Future<void> authSignup(String key, String email, String password) async {
@@ -48,8 +48,10 @@ class CustomerProvider with ChangeNotifier {
     }
   }
 
-  Future<void> logoutCust() {
+  void logoutCust() {
+    emailCust = null;
     customerData = [];
+    // print(customerData.length);
     notifyListeners();
   }
 

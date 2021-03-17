@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../provider/indoorProvider.dart';
+import '../provider/outdoorProvider.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -13,11 +14,11 @@ class _SettingScreenState extends State<SettingScreen> {
     return Scaffold(
       body: FlatButton(
           onPressed: () {
-            Provider.of<IndoorPlantsProvider>(context).updateIndoorPlantsDetails(
-                'assets/images/indoor/indimg4.png',
-                'Syngonium wendlandi',
-                '16500',
-                'Syngonium is a great looking, elegant, and versatile houseplant which needs only modest care. Its foliage attractive color will add up the beauty in your house and have the ability to cleanse the air you breathe.');
+            Provider.of<OutdoorPlantsProvider>(context).storeOutdoorPlantsDetails(
+                'assets/images/outdoor/outdoorimg4.png',
+                'Avocado',
+                '4500',
+                'Avocado is a tropical fruit and looks like similar to pear fruit.These fruits are a good source of nutrients compared to other fruit.');
           },
           child: Text('Click')),
     );

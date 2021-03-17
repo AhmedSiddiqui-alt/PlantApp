@@ -29,8 +29,10 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<void> logoutCustomer() async {
+  void logoutCustomer() {
+    emailCust=null;
     authData = [];
+    // print(authData.length);
     notifyListeners();
   }
 

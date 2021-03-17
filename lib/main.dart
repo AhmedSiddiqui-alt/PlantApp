@@ -11,6 +11,9 @@ import './screens/plantScreen.dart';
 import './screens/indoorDetailScreen.dart';
 import './screens/settingScreen.dart';
 import './screens/indoorScreen.dart';
+import './provider/outdoorProvider.dart';
+import './screens/outDoorDetailScreen.dart';
+import 'screens/outdoorScreen.dart';
 // import 'package:device_preview/device_preview.dart';
 
 void main() {
@@ -33,12 +36,13 @@ class MyApp extends StatelessWidget {
             return CustomerProvider(emailCust: authData.emailCust);
           },
         ),
+        ChangeNotifierProvider.value(value: OutdoorPlantsProvider()),
         ChangeNotifierProvider.value(value: IndoorPlantsProvider())
       ],
       child: Consumer<AuthProvider>(builder: (ctx, authProvider, _) {
         print(authProvider.checkEmail);
         return MaterialApp(
-          // home: PlantScreen(),
+          // home: SettingScreen(),
 
           home: authProvider.checkEmail ? PlantScreen() : BackGroundScreen(),
           routes: {
@@ -47,7 +51,9 @@ class MyApp extends StatelessWidget {
             AuthScreen.routeName: (ctx) => AuthScreen(),
             RegistrationScreen.routeName: (ctx) => RegistrationScreen(),
             IndoorDetailScreen.routeName: (ctx) => IndoorDetailScreen(),
-            IndoorScreen.routeName: (ctx) => IndoorScreen()
+            IndoorScreen.routeName: (ctx) => IndoorScreen(),
+            OutDoorDetailScreen.routeName: (ctx) => OutDoorDetailScreen(),
+            OutdoorScreen.routeName: (ctx) => OutdoorScreen()
           },
         );
       }),
