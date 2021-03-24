@@ -15,6 +15,7 @@ import './screens/indoorScreen.dart';
 import './provider/outdoorProvider.dart';
 import './screens/outDoorDetailScreen.dart';
 import 'screens/outdoorScreen.dart';
+import './screens/cartScreen.dart';
 // import 'package:device_preview/device_preview.dart';
 
 void main() {
@@ -55,7 +56,8 @@ class MyApp extends StatelessWidget {
             IndoorDetailScreen.routeName: (ctx) => IndoorDetailScreen(),
             IndoorScreen.routeName: (ctx) => IndoorScreen(),
             OutDoorDetailScreen.routeName: (ctx) => OutDoorDetailScreen(),
-            OutdoorScreen.routeName: (ctx) => OutdoorScreen()
+            OutdoorScreen.routeName: (ctx) => OutdoorScreen(),
+            CartScreen.routeName: (ctx) => CartScreen()
           },
         );
       }),

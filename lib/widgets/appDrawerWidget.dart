@@ -4,6 +4,8 @@ import '../provider/authProvider.dart';
 import '../provider/customerProvider.dart';
 import 'package:provider/provider.dart';
 import '../screens/backGroundScreen.dart';
+import 'package:provider/provider.dart';
+import '../screens/cartScreen.dart';
 
 class AppDrawerWidget extends StatefulWidget {
   @override
@@ -42,8 +44,7 @@ class _AppDrawerWidgetState extends State<AppDrawerWidget> {
                   onPressed: () {
                     Provider.of<AuthProvider>(context).logoutCustomer();
                     Provider.of<CustomerProvider>(context).logoutCust();
-                    Navigator.of(context)
-                        .pop();
+                    Navigator.of(context).pop();
                   }),
             ),
             ListTile(
@@ -54,7 +55,14 @@ class _AppDrawerWidgetState extends State<AppDrawerWidget> {
               trailing: IconButton(
                   icon: Icon(Icons.shopping_cart_rounded),
                   color: Colors.white,
-                  onPressed: () {}),
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(CartScreen.routeName, arguments: {
+                      'customerId': Provider.of<CustomerProvider>(context)
+                          .customerData[0]
+                          .id
+                    });
+                  }),
             ),
             ListTile(
               leading: Text(
@@ -65,7 +73,20 @@ class _AppDrawerWidgetState extends State<AppDrawerWidget> {
                   icon: Icon(Icons.money),
                   color: Colors.white,
                   onPressed: () {}),
-            )
+            ),
+            ListTile(
+              leading: Text(
+                'Indoor',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              trailing: IconButton(
+                  icon: Icon(Icons.home),
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(PlantScreen.routeName);
+                  }),
+            ),
           ],
         ),
       ),

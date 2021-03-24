@@ -6,6 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import '../widgets/appDrawerWidget.dart';
 import '../screens/indoorScreen.dart';
 import '../provider/cartProvider.dart';
+import '../provider/cartProvider.dart';
 
 // import '../widgets/appDrawerWidget.dart';
 class IndoorDetailScreen extends StatefulWidget {
@@ -14,8 +15,31 @@ class IndoorDetailScreen extends StatefulWidget {
   _IndoorDetailScreenState createState() => _IndoorDetailScreenState();
 }
 
+var init = true;
+bool isLoading = true;
+
 class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
   // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  @override
+  void didChangeDependencies() {
+    if (init) {
+      final getNavigatorArguments =
+          ModalRoute.of(context).settings.arguments as Map<String, String>;
+      final getCustomerId = getNavigatorArguments['customerId'];
+
+      Provider.of<CartProvider>(context)
+          .getAllCartItems(getCustomerId)
+          .then((value) {
+        setState(() {
+          isLoading = false;
+        });
+      });
+    }
+    init = false;
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     final getNavigatorArguments =
@@ -28,6 +52,7 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
         .firstWhere((data) {
       return data.id == getId;
     });
+    final getCartLength = Provider.of<CartProvider>(context).cartLength;
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
@@ -69,11 +94,15 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
                         decoration: BoxDecoration(
                             color: Colors.green[900],
                             borderRadius: BorderRadius.circular(30)),
-                        child: Text(
-                          '0',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
-                        ),
+                        child: isLoading
+                            ? CircularProgressIndicator(
+                                backgroundColor: Colors.green[900],
+                              )
+                            : Text(
+                                getCartLength.toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
                       ),
                     )
                   ],

@@ -5,6 +5,8 @@ import '../screens/indoorDetailScreen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import '../widgets/appDrawerWidget.dart';
 import '../screens/outDoorDetailScreen.dart';
+import '../provider/customerProvider.dart';
+
 
 class OutdoorScreen extends StatefulWidget {
   static const routeName = '/outdoorScreen';
@@ -21,6 +23,9 @@ class _OutdoorScreenState extends State<OutdoorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final customerId = Provider.of<CustomerProvider>(context)
+        .custData
+        .firstWhere((element) => true);
     final outdoorDetailPlant =
         Provider.of<OutdoorPlantsProvider>(context).outoorPlantData;
     return Scaffold(
@@ -81,7 +86,10 @@ class _OutdoorScreenState extends State<OutdoorScreen> {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                                 OutDoorDetailScreen.routeName,
-                                arguments: outdoorDetailPlant[index].id);
+                                 arguments: {
+                                  'indoorId': outdoorDetailPlant[index].id,
+                                  'customerId': customerId.id
+                                });
                           },
                           child: Container(
                             child: ClipRRect(

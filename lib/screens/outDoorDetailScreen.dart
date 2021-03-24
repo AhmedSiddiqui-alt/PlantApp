@@ -5,16 +5,47 @@ import 'package:auto_size_text/auto_size_text.dart';
 import '../widgets/appDrawerWidget.dart';
 import '../screens/outdoorScreen.dart';
 import '../screens/plantScreen.dart';
+import '../provider/cartProvider.dart';
+
 class OutDoorDetailScreen extends StatefulWidget {
   @override
   _OutDoorDetailScreenState createState() => _OutDoorDetailScreenState();
   static const routeName = '/outDoorScreen';
 }
 
+var init = true;
+bool isLoading = true;
+
 class _OutDoorDetailScreenState extends State<OutDoorDetailScreen> {
   @override
+  void didChangeDependencies() {
+    if (init) {
+      final getNavigatorArguments =
+          ModalRoute.of(context).settings.arguments as Map<String, String>;
+      final getCustomerId = getNavigatorArguments['customerId'];
+
+      Provider.of<CartProvider>(context)
+          .getAllCartItems(getCustomerId)
+          .then((value) {
+        setState(() {
+          isLoading = false;
+        });
+      });
+    }
+    init = false;
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final getId = ModalRoute.of(context).settings.arguments as String;
+    final getCartLength = Provider.of<CartProvider>(context).cartLength;
+
+    final getNavigatorArguments =
+        ModalRoute.of(context).settings.arguments as Map<String, String>;
+    final getId = getNavigatorArguments['indoorId'];
+    final getCustomerId = getNavigatorArguments['customerId'];
+
     final outdoorPlantData = Provider.of<OutdoorPlantsProvider>(context)
         .outoorPlantData
         .firstWhere((data) {
@@ -61,11 +92,15 @@ class _OutDoorDetailScreenState extends State<OutDoorDetailScreen> {
                         decoration: BoxDecoration(
                             color: Colors.green[900],
                             borderRadius: BorderRadius.circular(30)),
-                        child: Text(
-                          '0',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
-                        ),
+                        child: isLoading
+                            ? CircularProgressIndicator(
+                                backgroundColor: Colors.green[900],
+                              )
+                            : Text(
+                                getCartLength.toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
                       ),
                     )
                   ],
@@ -149,7 +184,15 @@ class _OutDoorDetailScreenState extends State<OutDoorDetailScreen> {
                                       Icons.add_shopping_cart,
                                       size: 40,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Provider.of<CartProvider>(context)
+                                          .AddItemsToCart(
+                                              getCustomerId,
+                                              outdoorPlantData.id,
+                                              outdoorPlantData.name,
+                                              outdoorPlantData.price,
+                                              outdoorPlantData.image);
+                                    },
                                     color: Colors.white),
                               ),
                             ],
