@@ -1,3 +1,4 @@
+import 'package:PABMAS/provider/cartProvider.dart';
 import 'package:flutter/material.dart';
 import './screens/authScreen.dart';
 import 'screens/indoorScreen.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
           },
         ),
         ChangeNotifierProvider.value(value: OutdoorPlantsProvider()),
-        ChangeNotifierProvider.value(value: IndoorPlantsProvider())
+        ChangeNotifierProvider.value(value: IndoorPlantsProvider()),
+        ChangeNotifierProvider.value(value: CartProvider())
       ],
       child: Consumer<AuthProvider>(builder: (ctx, authProvider, _) {
         print(authProvider.checkEmail);

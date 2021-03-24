@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import '../widgets/appDrawerWidget.dart';
 import '../screens/indoorScreen.dart';
+import '../provider/cartProvider.dart';
 
 // import '../widgets/appDrawerWidget.dart';
 class IndoorDetailScreen extends StatefulWidget {
@@ -17,7 +18,11 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
   // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final getId = ModalRoute.of(context).settings.arguments as String;
+    final getNavigatorArguments =
+        ModalRoute.of(context).settings.arguments as Map<String, String>;
+    final getId = getNavigatorArguments['indoorId'];
+    final getCustomerId = getNavigatorArguments['customerId'];
+
     final indoorPlantData = Provider.of<IndoorPlantsProvider>(context)
         .indoorPlantData
         .firstWhere((data) {
@@ -152,7 +157,15 @@ class _IndoorDetailScreenState extends State<IndoorDetailScreen> {
                                       Icons.add_shopping_cart,
                                       size: 40,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Provider.of<CartProvider>(context)
+                                          .AddItemsToCart(
+                                              getCustomerId,
+                                              indoorPlantData.id,
+                                              indoorPlantData.name,
+                                              indoorPlantData.price,
+                                              indoorPlantData.image);
+                                    },
                                     color: Colors.white),
                               ),
                             ],

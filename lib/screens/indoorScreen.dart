@@ -5,6 +5,7 @@ import '../provider/indoorProvider.dart';
 import '../screens/indoorDetailScreen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import '../widgets/appDrawerWidget.dart';
+import '../provider/customerProvider.dart';
 
 class IndoorScreen extends StatefulWidget {
   static const routeName = 'indoorScreen';
@@ -26,6 +27,9 @@ class _IndoorScreenState extends State<IndoorScreen> {
     final indooDetailPlant =
         Provider.of<IndoorPlantsProvider>(context).indoorPlantData;
     print(indooDetailPlant.length);
+    final customerId = Provider.of<CustomerProvider>(context)
+        .custData
+        .firstWhere((element) => true);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -85,7 +89,10 @@ class _IndoorScreenState extends State<IndoorScreen> {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                                 IndoorDetailScreen.routeName,
-                                arguments: indooDetailPlant[index].id);
+                                arguments: {
+                                  'indoorId': indooDetailPlant[index].id,
+                                  'customerId': customerId.id
+                                });
                           },
                           child: Container(
                             child: ClipRRect(
